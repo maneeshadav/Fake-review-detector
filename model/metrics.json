@@ -1,0 +1,40 @@
+{
+  "dataset_size": 40431,
+  "num_classes": 2,
+  "class_names": [
+    "Fake Review",
+    "Genuine Review"
+  ],
+  "train_size": 32344,
+  "test_size": 8087,
+  "algorithm": "Logistic Regression (C=1.0, max_iter=1000)",
+  "tfidf_config": {
+    "max_features": 5000,
+    "ngram_range": [
+      1,
+      2
+    ],
+    "sublinear_tf": true,
+    "stop_words": "English (NLTK)"
+  },
+  "accuracy": 0.8888,
+  "precision": 0.8829,
+  "recall": 0.8966,
+  "f1_score": 0.8897,
+  "confusion_matrix": {
+    "tn": 3562,
+    "fp": 481,
+    "fn": 418,
+    "tp": 3626,
+    "matrix": [
+      [
+        3562,
+        481
+      ],
+      [
+        418,
+        3626
+      ]
+    ]
+  }
+}

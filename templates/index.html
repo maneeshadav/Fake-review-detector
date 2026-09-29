@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake Review Detector - NLP & Machine Learning Project</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="brand">Fake Review Detector</a>
+            <ul class="nav-links">
+                <li><a href="/" class="active">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/model">Model</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <header class="page-header">
+            <h1>Fake Review Detector</h1>
+            <p>Enter an online review below and the model will analyze its text and predict whether it is likely to be genuine or fake.</p>
+        </header>
+
+        <section class="card">
+            <div class="form-group">
+                <label for="reviewText">Enter a review</label>
+                <textarea id="reviewText" placeholder="Example: The product arrived on time and worked exactly as described..."></textarea>
+            </div>
+
+            <button id="checkBtn" class="btn-primary">Check Review</button>
+
+            <div id="errorAlert" class="alert-error"></div>
+
+            <div id="resultCard" class="result-card">
+                <div class="result-header">
+                    <span class="result-title">Prediction</span>
+                    <span id="resultBadge" class="badge">--</span>
+                </div>
+
+                <div class="confidence-row">
+                    Model confidence: <span id="confidenceValue" class="confidence-value">--</span>
+                </div>
+
+                <div class="disclaimer-note">
+                    Prediction is based on patterns learned from the training data and should not be treated as definitive.
+                </div>
+            </div>
+
+            <div class="examples-section">
+                <p>Try an example</p>
+                <div class="examples-grid">
+                    <button class="btn-secondary example-btn" data-example="ex1">Example 1 (Genuine)</button>
+                    <button class="btn-secondary example-btn" data-example="ex2">Example 2 (Fake)</button>
+                    <button class="btn-secondary example-btn" data-example="ex3">Example 3 (Genuine)</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Fake Review Detection Portfolio Project &bull; Built with Flask & Scikit-Learn</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

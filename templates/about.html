@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Fake Review Detector</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="brand">Fake Review Detector</a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about" class="active">About</a></li>
+                <li><a href="/model">Model</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <header class="page-header">
+            <h1>About This Project</h1>
+            <p>An overview of fake review detection concepts, NLP techniques, and machine learning methodology.</p>
+        </header>
+
+        <section class="card">
+            <h2>What is fake review detection?</h2>
+            <p>
+                Fake review detection uses Natural Language Processing (NLP) and machine learning to identify subtle textual patterns in review text that may distinguish suspicious, computer-generated, or incentivized reviews from genuine customer feedback.
+            </p>
+            <p style="margin-top: 0.75rem;">
+                Online marketplaces face millions of user-submitted reviews daily. Automated ML classification models assist in flagging suspicious language, repetitive phrasings, and abnormal structural patterns before manual moderation.
+            </p>
+        </section>
+
+        <section class="card">
+            <h2>Project Pipeline</h2>
+            <p>The system processes incoming text through a standard end-to-end NLP and machine learning pipeline:</p>
+
+            <div class="pipeline-container">
+                <div class="pipeline-step">1. Review Text</div>
+                <div class="pipeline-arrow">&rarr;</div>
+                <div class="pipeline-step">2. Text Preprocessing</div>
+                <div class="pipeline-arrow">&rarr;</div>
+                <div class="pipeline-step">3. TF-IDF Vectorization</div>
+                <div class="pipeline-arrow">&rarr;</div>
+                <div class="pipeline-step">4. Logistic Regression</div>
+                <div class="pipeline-arrow">&rarr;</div>
+                <div class="pipeline-step">5. Prediction</div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Component Overview</h2>
+            
+            <div style="margin-bottom: 1.25rem;">
+                <h3 style="font-size: 1.05rem; font-weight: 600; color: #1e293b;">NLP (Natural Language Processing)</h3>
+                <p style="color: #475569; font-size: 0.95rem;">
+                    Used to clean and standardize human language input. Raw reviews are lowercased, stripped of HTML tags, punctuation, and non-alphanumeric noise, then tokenized to remove non-informative English stopwords.
+                </p>
+            </div>
+
+            <div style="margin-bottom: 1.25rem;">
+                <h3 style="font-size: 1.05rem; font-weight: 600; color: #1e293b;">TF-IDF (Term Frequency-Inverse Document Frequency)</h3>
+                <p style="color: #475569; font-size: 0.95rem;">
+                    Converts text strings into numerical feature vectors. It evaluates word importance by balancing how frequently a word occurs in a specific review against how commonly it appears across the entire review dataset (using unigrams and bigrams).
+                </p>
+            </div>
+
+            <div>
+                <h3 style="font-size: 1.05rem; font-weight: 600; color: #1e293b;">Logistic Regression</h3>
+                <p style="color: #475569; font-size: 0.95rem;">
+                    Serves as the binary classification algorithm. It calculates the decision boundary and probability score estimating whether a review is <strong>Likely Genuine</strong> or <strong>Likely Fake</strong> based on learned TF-IDF feature weights.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Fake Review Detection Portfolio Project &bull; Built with Flask & Scikit-Learn</p>
+    </footer>
+
+</body>
+</html>

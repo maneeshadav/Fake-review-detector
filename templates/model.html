@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Performance & Information - Fake Review Detector</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="brand">Fake Review Detector</a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/model" class="active">Model</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <header class="page-header">
+            <h1>Model Performance & Information</h1>
+            <p>Empirical evaluation metrics and technical parameters calculated directly during training on the test set.</p>
+        </header>
+
+        <!-- Metrics Overview Grid -->
+        <div class="metrics-grid">
+            <div class="metric-box">
+                <div class="val">{{ "%.2f"|format(metrics.accuracy * 100) }}%</div>
+                <div class="lbl">Accuracy</div>
+            </div>
+            <div class="metric-box">
+                <div class="val">{{ "%.2f"|format(metrics.precision * 100) }}%</div>
+                <div class="lbl">Precision</div>
+            </div>
+            <div class="metric-box">
+                <div class="val">{{ "%.2f"|format(metrics.recall * 100) }}%</div>
+                <div class="lbl">Recall</div>
+            </div>
+            <div class="metric-box">
+                <div class="val">{{ "%.2f"|format(metrics.f1_score * 100) }}%</div>
+                <div class="lbl">F1-Score</div>
+            </div>
+        </div>
+
+        <!-- Training Configuration Card -->
+        <section class="card">
+            <h2>Model Configuration & Dataset Details</h2>
+            <table class="data-table">
+                <tbody>
+                    <tr>
+                        <th>Total Dataset Size</th>
+                        <td>{{ metrics.dataset_size }} reviews</td>
+                    </tr>
+                    <tr>
+                        <th>Number of Classes</th>
+                        <td>{{ metrics.num_classes }} (Fake Review [0], Genuine Review [1])</td>
+                    </tr>
+                    <tr>
+                        <th>Train / Test Split</th>
+                        <td>{{ metrics.train_size }} train samples (80%) / {{ metrics.test_size }} test samples (20%)</td>
+                    </tr>
+                    <tr>
+                        <th>Classification Algorithm</th>
+                        <td>{{ metrics.algorithm }}</td>
+                    </tr>
+                    <tr>
+                        <th>Feature Extraction</th>
+                        <td>TF-IDF Vectorizer (max_features=5000, n-grams=1-2, sublinear_tf=True)</td>
+                    </tr>
+                    <tr>
+                        <th>Stopwords Removal</th>
+                        <td>English Stopwords (NLTK)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Confusion Matrix Card -->
+        <section class="card">
+            <h2>Confusion Matrix</h2>
+            <p style="color: #475569; font-size: 0.95rem; margin-bottom: 1rem;">
+                Evaluated on {{ metrics.test_size }} holdout test samples:
+            </p>
+
+            <table class="data-table" style="max-width: 500px; text-align: center;">
+                <thead>
+                    <tr>
+                        <th>Actual \ Predicted</th>
+                        <th>Predicted Fake</th>
+                        <th>Predicted Genuine</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Actual Fake</th>
+                        <td style="background-color: #eff6ff; font-weight: 700;">
+                            {{ metrics.confusion_matrix.tn }} <br>
+                            <span style="font-size: 0.75rem; color: #475569; font-weight: normal;">(True Negatives)</span>
+                        </td>
+                        <td style="background-color: #fef2f2;">
+                            {{ metrics.confusion_matrix.fp }} <br>
+                            <span style="font-size: 0.75rem; color: #475569; font-weight: normal;">(False Positives)</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Actual Genuine</th>
+                        <td style="background-color: #fef2f2;">
+                            {{ metrics.confusion_matrix.fn }} <br>
+                            <span style="font-size: 0.75rem; color: #475569; font-weight: normal;">(False Negatives)</span>
+                        </td>
+                        <td style="background-color: #eff6ff; font-weight: 700;">
+                            {{ metrics.confusion_matrix.tp }} <br>
+                            <span style="font-size: 0.75rem; color: #475569; font-weight: normal;">(True Positives)</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>Fake Review Detection Portfolio Project &bull; Built with Flask & Scikit-Learn</p>
+    </footer>
+
+</body>
+</html>
